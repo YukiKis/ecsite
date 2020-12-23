@@ -1,0 +1,60 @@
+// Place all the styles related to the homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "variable";
+
+// top
+
+.category-table{
+  margin: 15px 10px;
+  width: 100%;
+  height: auto;
+  border: 3px solid black;
+  .category-table-head th{
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 3px solid black;
+  }
+  tr td{
+    margin-bottom: 10px;
+    padding: 5px 10px;
+  }
+}
+
+.items-list{
+  display: flex;
+  flex-wrap: wrap;
+  .list{
+    margin: 0 15px;
+    
+  }
+}
+
+.top-image{
+  width: 80%;
+  height: 300px;
+  position: relative;
+  background-color: $main-color-strong;
+  .top-image-text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border: 3px solid black;
+    vertical-align: middle;
+    padding: 20px 5px;
+    white-space: nowrap;
+  }
+}
+
+// about
+.about-heading{
+  font-weight: bold;
+  text-align: center;
+}
+.about-text{
+  text-align: center;
+  font-size: 24px;
+}

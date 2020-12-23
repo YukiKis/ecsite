@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-sm-3">
+    <div class="sidebar">
+      <table class="category-table">
+        <thead class="category-table-head"><th>ジャンル検索</th></thead>
+        <tbody>
+          <tr><td>ケーキ</td></tr>
+          <tr><td>焼き菓子</td></tr>
+          <tr><td>プリン</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-sm-9">
+    <div class="top-image">
+      <p class="top-image-text">
+        ようこそ、NaganoCakeへ！<br>
+        このサイトは、ケーキ販売のECサイトになります。<br>
+        会員でない方も商品の閲覧は出来ますが、<br>
+        購入には会員登録が必要になります。
+      </p>
+    </div>
+    <section class="recommendation">
+      <h2>おすすめ商品</h2>
+      <%# @items.each do |i| %>
+      <div class="items-list">
+        <div clsas="item">
+          IMG<br>
+          商品名<br>
+          値段
+        </div>
+        <div clsas="item">
+          IMG<br>
+          商品名<br>
+          値段
+        </div>
+        <div clsas="item">
+          IMG<br>
+          商品名<br>
+          値段
+        </div>
+        <div clsas="item">
+          IMG<br>
+          商品名<br>
+          値段
+        </div>        
+      </div>
+      <%#end %>
+    </section>
+  </div>
+</div>

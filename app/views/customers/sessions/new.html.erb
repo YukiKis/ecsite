@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <h2>会員の方はこちらからログイン</h2>
+    <%= form_with model: @customer, url: session_path(resource_name), local: true do |f| %>
+      <div class="form-group form-inline">
+        <%= f.label "メールアドレス", for: "customer_email", class: "control-label" %>
+        <%= f.email_field :email, class: "form-control" %>
+      </div>
+      <div class="form-group form-inline">
+        <%= f.label "パスワード", for: "customer_password", class: "control-label" %>
+        <%= f.password_field :password, class: "form-control" %>
+      </div>
+      <div class="submit-btn">
+        <%= f.submit "ログイン" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <h2>登録がお済みでない方</h2>
+    <p><%= link_to "こちら", new_customer_registration_path %>から新規登録を行って下さい。</p>
+  </div>
+</div>

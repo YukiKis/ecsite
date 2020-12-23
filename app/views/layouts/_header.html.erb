@@ -2,16 +2,34 @@
   <div class="col-sm-12">
     <div class="header-content">
       <div>
-        <p>LOGO</p>
+        <p><%= link_to "LOGO", root_path %></p>
       </div>
       <div>
         <ul class="nav-menu">
-          <li class="nav-menu-item"><%= link_to "About", about_path %></li>
-          <li class="nav-menu-item">商品一覧</li>
-          <li class="nav-menu-item">新規登録</li>
-          <li class="nav-menu-item">ログイン</li>
+          <% if customer_signed_in? %>
+            <li class="nav-menu-item">マイページ</li>
+            <li class="nav-menu-item">商品一覧</li>
+            <li class="nav-menu-item">カート</li>
+            <li class="nav-menu-item"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, data: { confirm: "Are you sure?" } %></li>
+          <%# elsif admin.signed_in? %>
+          <% else %>
+            <li class="nav-menu-item"><%= link_to "About", about_path %></li>
+            <li class="nav-menu-item">商品一覧</li>
+            <li class="nav-menu-item"><%= link_to "新規登録", new_customer_registration_path %></li>
+            <li class="nav-menu-item"><%= link_to "ログイン", new_customer_session_path %></li>
+          <% end %>
         </ul>
       </div>
     </div>
+  </div>
+</div>
+<div class="row">
+  <div class="flash-message">
+    <% if notice.present? %>
+      <p clsas="notice"><%= notice %></p>
+    <% end %>
+    <% if alert.present? %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
   </div>
 </div>

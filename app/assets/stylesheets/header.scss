@@ -1,0 +1,25 @@
+@import "variable";
+.header-content{
+  background-color: $main-color-weak;
+  padding: 20px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: middle;
+}
+.nav-menu{
+  margin: 0 !important;
+  display: flex;
+  align-items: middle;
+  .nav-menu-item{
+    list-style-type: none;
+    padding: 5px;
+    margin: 0 10px;
+    background-color: $sub-color-weak;
+    border-radius: 3px;
+    color: white;
+    &:hover{
+      background-color: white;
+      color: black;
+    }
+  }
+}

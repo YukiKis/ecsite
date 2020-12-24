@@ -16,3 +16,10 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(document).on("turbolinks:load", function(){
+  $(window).on("resize", function(){
+    $(".container").height($(window).height());
+  })
+  $(window).trigger("resize")
+})

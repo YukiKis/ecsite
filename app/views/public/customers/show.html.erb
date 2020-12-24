@@ -1,26 +1,43 @@
 <div class="row">
-  <div class="col-sm-12">
-    <h2 class="customer-show-heading">マイページ</h2>
+  <div class="col-sm-10 col-sm-offset-1">
+    <h2 class="show-customer-heading">マイページ</h2>
     <p>
-      登録情報
-      <%= link_to "編集する", edit_customer_path, class: "btn btn-primary" %>
-      <%= link_to "パスワードを編集する", edit_customer_password_path, class: "btn btn-primary" %>
+      <b>登録情報</b>&emsp;
+      <%= link_to "編集する", edit_customer_path, class: "btn btn-primary" %>&emsp;
+      <%= link_to "パスワードを変更する", edit_customer_password_path, class: "btn btn-primary" %>
     </p>
-    <table class="table table-hover">
-      <tr><th>氏名</th><td><%= @customer.last_name %>&emsp;<%= @customer.first_name %></td></tr>
-      <tr><th>カナ</th><td><%= @customer.last_name_kana %>&emsp;<%= @customer.first_name_kana %></td></tr>
-      <tr><th>郵便番号</th><td><%= @customer.postcode %></td></tr>
-      <tr><th>住所</th><td><%= @customer.address %></td></tr>
-      <tr><th>電話番号</th><td><%= @customer.tel %></td></tr>
-      <tr><th>メールアドレス</th><td><%= @customer.email %></td></tr>
-    </table>
-    <p>
-      配送先
-      <span>一覧を見る</span>
-    </p>
-    <p>
-      注文履歴
-      <span>一覧を見る</span>
-    </p>
+    
+    <div class="row">
+      <div class="col-sm-10">
+        <table class="table table-hover table-bordered">
+          <tr class="row"><th class="col-sm-3 gray-color">氏名</th><td class="col-sm-9"><%= @customer.last_name %>&emsp;<%= @customer.first_name %></td></tr>
+          <tr class="row"><th class="col-sm-3 gray-color">カナ</th><td class="col-sm-9"><%= @customer.last_name_kana %>&emsp;<%= @customer.first_name_kana %></td></tr>
+          <tr class="row"><th class="col-sm-3 gray-color">郵便番号</th class="col-sm-9"><td><%= @customer.postcode %></td></tr>
+          <tr class="row"><th class="col-sm-3 gray-color">住所</th><td class="col-sm-9"><%= @customer.address %></td></tr>
+          <tr class="row"><th class="col-sm-3 gray-color">電話番号</th><td class="col-sm-9"><%= @customer.tel %></td></tr>
+          <tr class="row"><th class="col-sm-3 gray-color">メールアドレス</th><td class="col-sm-9"><%= @customer.email %></td></tr>
+        </table>        
+      </div>
+      <div class="col-sm-2"></div>
+    </div>
+    
+    <div class="row">
+      <div class="col-sm-12">
+        <p>
+          <b>配送先</b>
+          <span>一覧を見る</span>
+        </p>        
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-sm-12">
+        <p>
+          <b>注文履歴</b>
+          <span>一覧を見る</span>
+        </p>   
+      </div>
+    </div>
+    
   </div>
 </div>

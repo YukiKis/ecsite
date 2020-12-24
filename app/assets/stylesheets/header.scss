@@ -17,9 +17,15 @@
     background-color: $sub-color-weak;
     border-radius: 3px;
     color: white;
+    a{
+      display: block;
+    }
     &:hover{
       background-color: white;
       color: black;
+      a{
+      text-decoration: none;
+      }
     }
   }
 }

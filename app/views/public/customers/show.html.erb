@@ -4,7 +4,7 @@
     <p>
       登録情報
       <%= link_to "編集する", edit_customer_path, class: "btn btn-primary" %>
-      <%= link_to "パスワードを編集する", edit_customer_password_path, class: "btn btn-primary" %>
+      <%= link_to "パスワードを変更する", edit_customer_password_path, class: "btn btn-primary" %>
     </p>
     <table class="table table-hover">
       <tr><th>氏名</th><td><%= @customer.last_name %>&emsp;<%= @customer.first_name %></td></tr>

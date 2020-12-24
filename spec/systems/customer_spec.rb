@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "customer-pages", type: :system do
   let(:customer){ create(:customer) }
   before do
-    sign_in customer
+    login customer
   end
   context "on show page" do
     before do
@@ -35,8 +35,8 @@ RSpec.describe "customer-pages", type: :system do
       visit edit_customer_path
     end
     it "has form for name" do
-      expect(page).to have_field "custome[last_name]", with: customer.last_name
-      expect(page).to have_field "customer[first_name]", with: customer_first_name
+      expect(page).to have_field "customer[last_name]", with: customer.last_name
+      expect(page).to have_field "customer[first_name]", with: customer.first_name
     end
     it "has form for kana" do
       expect(page).to have_field "customer[last_name_kana]", with: customer.last_name_kana
@@ -70,10 +70,25 @@ RSpec.describe "customer-pages", type: :system do
     it "fails to udpate" do
       fill_in "customer[first_name]", with: ""
       click_button "編集内容を保存する"
-      expect(page).to have_content "error"
+      expect(page).to have_content "エラー"
     end
     it "has button to quit" do
       expect(page).to have_link "退会する", href: quit_customer_path
+    end
+  end
+  context "on quit" do
+    before do
+      visit quit_customer_path
+    end
+    it "has button to go back to edit" do
+      expect(page).to have_link "退会しない", href: edit_customer_path
+      expect(page).to have_link "退会する", href: leave_customer_path
+    end
+    it "succeeds to leave" do
+      click_link "退会する"
+      customer.reload
+      expect(customer.is_active).to eq false
+      expect(current_path).to eq root_path
     end
   end
 end

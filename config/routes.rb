@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 #  namespace :public do
   scope module: :public do
-    resource :customer, except: [:destroy, :create, :new]
+    resource :customer, except: [:destroy, :create, :new] do
+      get "/quit", to: "customers#quit", as: :quit
+      post "/leave", to: "customers#leave", as: :leave
+    end
   end
   devise_for :customers, controllers: {
     sessions: "customers/sessions",

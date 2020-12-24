@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       get "/quit", to: "customers#quit", as: :quit
       post "/leave", to: "customers#leave", as: :leave
     end
+    resources :deliveries, except: [:show, :new]
   end
   devise_for :customers, controllers: {
     sessions: "customers/sessions",

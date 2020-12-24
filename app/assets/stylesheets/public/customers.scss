@@ -1,3 +1,53 @@
 // Place all the styles related to the public/customers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "variable";
+
+//show
+.show-customer-heading{
+  display: inline-block;
+  padding: 0 15px;
+  background-color: $heading-color;
+  margin-left: 100px;
+}
+
+.gray-color{
+  background-color: $heading-color;
+}
+
+// edit
+.edit-customer-header{
+  display: inline-block;
+  padding: 0 15px;
+  background-color: $heading-color;
+  margin-left: 40px;
+}
+
+.flex-between{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+@media screen and (min-width: 992px){
+  .label-abs1{
+    position: absolute;
+    top: 6px;
+    left: -15px;
+  }
+  .label-abs2{
+    position: absolute;  
+    top: 6px;
+    left: -25px; 
+  }
+}
+
+// quit
+.quit-customer-heading{
+  margin-bottom: 30px;
+}
+
+.quit-customer-text{
+  margin-bottom: 30px;
+}

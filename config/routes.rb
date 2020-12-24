@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+#  namespace :public do
+  scope module: :public do
+    resource :customer, except: [:destroy, :create, :new]
+  end
   devise_for :customers, controllers: {
     sessions: "customers/sessions",
     registrations: "customers/registrations"

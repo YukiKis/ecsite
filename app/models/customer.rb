@@ -3,6 +3,8 @@ class Customer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  has_many :deliveries, dependent: :destroy
          
   validates :first_name, presence: true
   validates :first_name_kana, presence: true
@@ -11,4 +13,5 @@ class Customer < ApplicationRecord
   validates :postcode, format: { with: /\d{7}/, message: "有効な郵便番号が必要です" }
   validates :address, presence: true
   validates :tel, presence: true
+  
 end

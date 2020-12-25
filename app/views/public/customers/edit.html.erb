@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
     <h2 class="edit-customer-header">登録情報編集</h2>
-    <% if @customer.errors.any? %>
-       <%= render "layouts/error", resource: @customer %>
-    <% end %>
+    <div class="error-explanation">
+      <%= render "layouts/error", resource: @customer %>
+    </div>
     <%= form_with model: @customer, local: true do |f| %>
       <div class="row">
         <div class="col-md-4">

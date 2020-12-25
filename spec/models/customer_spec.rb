@@ -3,6 +3,9 @@ require "rails_helper"
 RSpec.describe Customer, type: :model do
   context "on validation" do
     let(:customer){ build(:customer) }
+    it "has many deliveries" do
+      expect(Customer.reflect_on_association(:deliveries).macro).to eq :has_many
+    end
     it "is valid" do
       expect(customer).to be_valid
     end

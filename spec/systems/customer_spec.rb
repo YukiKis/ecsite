@@ -25,10 +25,12 @@ RSpec.describe "customer-pages", type: :system do
       expect(page).to have_content customer.tel
       expect(page).to have_content customer.email
     end
-    #it "has link to delivery_index" do
-    #end
-#    it "has link to order-index" do
-#    end
+    it "has link to delivery_index" do
+      expect(page).to have_link "一覧を見る", href: deliveries_path
+    end
+    it "has link to order-index" do
+      expect(page).to have_link "一覧を見る", href: orders_path
+    end
   end
   context "on edit page" do
     before do

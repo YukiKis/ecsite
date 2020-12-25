@@ -1,2 +1,42 @@
-<h1>Public::Delivries#edit</h1>
-<p>Find me in app/views/public/delivries/edit.html.erb</p>
+<div class="row">
+  <div class="col-sm-9 col-sm-offset-1">
+    <h2>配送先編集</h2>
+    <div class="error-explanation">
+      <%= render "layouts/error", resource: @delivery %>
+    </div>
+    <%= form_with model: @delivery, local: true do |f| %>
+      <div class="row">
+        <div class="col-sm-3">
+          <%= f.label "郵便番号(ハイフンなし)", for: "delivery_postcode", class: "control-label" %>
+        </div>
+        <div class="col-sm-3 form-group">
+          <%= f.text_field :postcode, class: "form-control" %>
+        </div>
+        <div class="col-sm-6"></div>
+      </div>
+      
+      <div class="row">
+        <div class="col-sm-3">
+          <%= f.label "住所", for: "delivery_address", class: "control-label" %>
+        </div>
+        <div class="col-sm-6 form-group">
+          <%= f.text_field :address, class: "form-control" %>
+        </div>
+        <div class="col-sm-3"></div>
+      </div>
+      
+      <div class="row">
+        <div class="col-sm-3">
+          <%= f.label "宛名", for: "delivery_name", class: "control-label" %>
+        </div>
+        <div class="col-sm-3">
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <div class="col-sm-3 col-sm-offset-3">
+          <%= f.submit "編集する", class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-sm-2"></div>
+</div>

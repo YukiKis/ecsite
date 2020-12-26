@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       post "/leave", to: "customers#leave", as: :leave
     end
     resources :deliveries, except: [:show, :new]
+    resources :items, only: [:index, :show]
   end
   devise_for :customers, controllers: {
     sessions: "customers/sessions",

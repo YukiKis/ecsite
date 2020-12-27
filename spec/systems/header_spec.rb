@@ -29,9 +29,9 @@ RSpec.describe "Header", type: :system do
     it "has link to item-index" do
       expect(page).to have_link "商品一覧", href: items_path
     end
-#   it "has link to cartitems-index" do
-#      expect(page).to have_link "カート", href
-#   end
+   it "has link to cartitems-index" do
+      expect(page).to have_link "カート", href: cart_items_path
+   end
    it "has button to logout" do
      expect(page).to have_link "ログアウト", href: destroy_customer_session_path
    end

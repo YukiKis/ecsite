@@ -11,6 +11,7 @@ RSpec.describe CartItem, type: :model do
         end
         it "calc subtotal price" do
             expect(cart_item.subtotal).to eq 3300
+        end
         it "belongs_to item" do
             expect(CartItem.reflect_on_association(:item).macro).to eq :belongs_to
         end

@@ -9,7 +9,7 @@
           <% if customer_signed_in? %>
             <li class="nav-menu-item"><%= link_to "マイページ", customer_path %></li>
             <li class="nav-menu-item"><%= link_to "商品一覧", items_path %></li>
-            <li class="nav-menu-item">カート</li>
+            <li class="nav-menu-item"><%= link_to "カート", cart_items_path %></li>
             <li class="nav-menu-item"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, data: { confirm: "Are you sure?" } %></li>
           <%# elsif admin.signed_in? %>
           <% else %>

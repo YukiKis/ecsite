@@ -4,7 +4,7 @@ class CartItem < ApplicationRecord
   
   validates :amount, numericality: true
   
-  def subtotal_price
+  def subtotal
     item.price_with_tax * amount
   end
 end

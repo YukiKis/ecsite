@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe Customer, type: :model do
   context "on validation" do
     let(:customer){ build(:customer) }
-    let(:category1){ crete(:category1) }
+    let(:category1){ create(:category1) }
     let(:item1){ create(:item1, category: category1) }
     let(:category2){ create(:category2) }
     let(:item2){ create(:item2, category: category2) }

@@ -6,6 +6,10 @@ RSpec.describe Customer, type: :model do
     it "has many deliveries" do
       expect(Customer.reflect_on_association(:deliveries).macro).to eq :has_many
     end
+    it "has many cart_items" do
+      expect(Customer.reflect_on_associatoin(:cart_items).macro).to eq :has_many
+    it "can calc cart_items total" do
+      expect(customer)
     it "is valid" do
       expect(customer).to be_valid
     end

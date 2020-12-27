@@ -7,6 +7,9 @@ RSpec.describe Item, type: :model do
     it "belongs_to category" do
       expect(Item.reflect_on_association(:category).macro).to eq :belongs_to
     end
+    it "can calc tax_price" do
+      expect(item1.price_with_tax).to eq 1100
+    end
     it "is valid" do
       expect(item1).to be_valid
     end

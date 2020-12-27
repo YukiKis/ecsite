@@ -15,4 +15,9 @@ class Customer < ApplicationRecord
   validates :address, presence: true
   validates :tel, presence: true
   
+  def subtotal_with_all_cart_items
+    self.cart_items.inject(0) do |total, cart_item|
+      total += cart_item.item.price_with_tax * cart_item.amount
+    end
+  end
 end

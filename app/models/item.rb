@@ -14,6 +14,6 @@ class Item < ApplicationRecord
   TAX = 1.1
   
   def price_with_tax
-    self.price * TAX
+    (self.price * TAX).to_i
   end
 end

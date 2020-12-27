@@ -11,7 +11,7 @@ RSpec.describe "items-page", type: :system do
   let(:item3){ create(:item3, category: category3) }
   let(:item4){ craete(:item4, category: category4) }
   before do
-    login customr1
+    login customer
   end
   context "on index page" do
     before do
@@ -74,7 +74,6 @@ RSpec.describe "items-page", type: :system do
     it "has select form for number of items to buy" do
       expect(page).to have_select("cart_item_amount", options: [1, 2, 3, 4, 5])
       expect(page).to have_button "カートに入れる"
-    end
     end
   end
 end

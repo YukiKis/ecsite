@@ -6,6 +6,13 @@ Rails.application.routes.draw do
       post "/leave", to: "customers#leave", as: :leave
     end
     resources :deliveries, except: [:show, :new]
+    resources :items, only: [:index, :show]
+    resources :cart_items, only: [:index, :create, :update, :destroy] do
+      collection do
+        delete "/destroy_all", to: "cart_items#destroy_all", as: :destroy_all
+      end
+    end
+    
   end
   devise_for :customers, controllers: {
     sessions: "customers/sessions",

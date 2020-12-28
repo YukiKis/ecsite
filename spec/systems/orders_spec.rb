@@ -3,18 +3,64 @@ require "rails_helper"
 RSpec.describe "Order page" do
   let(:customer){ create(:customer) }
   let(:category1){ create(:category1) }
-  let(:item1){ create(:item1) }
+  let(:item1){ create(:item1, category: category1) }
   let(:category2){ create(:category2) }
-  let(:item2){ create(:item2) }
+  let(:item2){ create(:item2, category: category2) }
   before do
     login customer
     @cart_item1 = customer.cart_items.create(item: item1, amount: 3)
     @cart_item2 = customer.cart_items.create(item: item2, amount: 2)
   end
   context "on index page" do
+    before do
+      let(:order){ create(:order, customer: customer) }
+      order.set_order_items(customer)
+      visit orders_path
+    end
+    it "has orders list" do
+      customer.orders.each do |order|
+        expect(page).to have_content order.created_at.to_strftime("%Y/%m/%d")
+        expect(page).to have_content order.postcode
+        expect(page).to have_content order.address
+        expect(page).to have_content order.name
+        order.order_items.each do |order_item|
+          expect(page).to have_content order_item.item.name
+        end
+        expect(page).to have_content order.total_price.to_s(:delimited)
+        expect(page).to have_content order.status
+        expect(page).to have_link "表示する", order_path(order)
+      end
+    end
   end
   context "on show page" do
+    before do
+      let(:order){ create(:order, customer: customer) }
+      order.set_order_items(customer)
+      visit order_path(order)
+    end    
+    it "has order info" do
+      expect(page).to have_content order.create_at.strftime("%Y/%m/%d")
+      expect(page).to have_content order.postcode
+      expect(page).to have_cotnent order.address
+      expect(page).to have_content order.name
+      expect(page).to have_content order.payment
+      expect(page).to have_content order.status
+    end
+    it "has order price" do
+      expect(page).to have_content customer.subtotal_with_all_cart_items.to_s(:delimited)
+      expect(page).to have_content order.shipment.to_s(:delimited)
+      expect(page).to have_content order.total_price.to_s(:delimited)
+    end
+    it "has order_item info" do
+      order.order_items.each do |order_item|
+        expect(page).to have_content order_item.item.name
+        expect(page).to have_content order_item.item.order_with_tax
+        expect(page).to have_content order_item.amount
+        expect(page).to have_content order_item.subtotal
+      end
+    end
   end
+  
   context "on new page" do
     before do
       visit new_order_path

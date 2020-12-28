@@ -15,4 +15,12 @@ class Order < ApplicationRecord
       self.order_items.create(item: cart_item.item, amount: cart_item.amount)
     end
   end
+  
+  def subtotal_price
+    self.order_items.inject(0){ |result, order_item| result += order_item.item.price_with_tax }.to_s(:delimited)
+  end
+  
+  def total_price
+    self.order_items.inject(self.shipment){ |result, order_item| result += order_item.item.price_with_tax }.to_s(:delimited)
+  end
 end

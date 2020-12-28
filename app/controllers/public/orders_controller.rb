@@ -1,11 +1,14 @@
 class Public::OrdersController < ApplicationController
   SHIPMENT = 800
 
-  def show
+  def index
+    @orders = current_customer.orders.all
   end
 
-  def index
+  def show
+    @order = Order.find(params[:id])
   end
+
   
   def new
   end
@@ -35,11 +38,10 @@ class Public::OrdersController < ApplicationController
   def create
     @order_new = current_customer.orders.new(order_params)
     @order_new.payment = payment_check(@order_new.payment)
-    debugger
     if @order_new.save
       @order_new.set_order_items(current_customer)
-      debugger
-      if @order_new.save  
+      if @order_new.save
+        current_customer.cart_items.destroy_all
         redirect_to thanks_orders_path
       end
     else

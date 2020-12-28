@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-#  namespace :public do
   scope module: :public do
     resource :customer, except: [:destroy, :create, :new] do
       get "/quit", to: "customers#quit", as: :quit
@@ -12,7 +11,12 @@ Rails.application.routes.draw do
         delete "/destroy_all", to: "cart_items#destroy_all", as: :destroy_all
       end
     end
-    
+    resources :orders, only: [:index, :show, :new, :create] do
+      collection do
+        post "/check", to: "orders#check", as: :check
+        get "/thanks", to: "orders#thanks", as: :thanks
+      end
+    end
   end
   devise_for :customers, controllers: {
     sessions: "customers/sessions",

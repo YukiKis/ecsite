@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-sm-10 col-sm-offset-1">
+    <div class="row" style="margin-top: 30px;">
+      <div class="col-sm-8">
+        <h2>注文情報確認</h2>
+        <table class-"table table-hover table-bordered">
+          <thead class="row">
+            <th class="col-sm-6">商品名</th>
+            <th class="col-sm-2">単価(税込)</th>
+            <th class="col-sm-2">数量</th>
+            <th class="col-sm-2">小計</th>
+          </thead>
+          <tbody>
+            <% current_customer.cart_items.each do |cart_item| %>
+              <tr>
+                <td>IMAGE <%= cart_item.item.name %></td>
+                <td><%= (cart_item.item.price_with_tax).to_s(:delimited) %></td>
+                <td><%= cart_item.amount %></td>
+                <td><%= (cart_item.subtotal).to_s(:delimited) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <p><b>支払方法</b><%= @payment %></p>
+        <p><b>お届け先</b><%= @delivery_postcode %>&nbsp;<%= @delivery_address %><br><%= @delivery_name %></p>
+      </div>
+      <div class="col-sm-4">
+        <table class="table table-hover table-bordered">
+          <th>送料</th><td><%= @shipment %></td>
+          <th>商品合計</th><td><%= @subtotal %></td>
+          <th>請求合計</th><td><%= @total %></td>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-4 text-center">
+        <%= form_with model: @order_new, local: true do |f| %>
+          <%= f.hidden_field :postcode, value: @delivery_postcode %>
+          <%= f.hidden_field :address, value: @delivery_address %>
+          <%= f.hidden_field :name, value: @delivery_name %>
+          <%= f.hidden_field :payment, value: @payment %>
+          <%= f.submit "購入を確定する", class: "btn btn-block btn-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

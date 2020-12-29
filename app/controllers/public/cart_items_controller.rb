@@ -9,7 +9,8 @@ class Public::CartItemsController < ApplicationController
       redirect_to cart_items_path, notice: "OK"
     else
       @item = Item.find(cart_item_params[:item_id])
-      render "items/show"
+      flash.now[:notice] = "個数を選択して下さい"
+      render "public/items/show"
     end
   end
   

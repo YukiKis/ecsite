@@ -18,19 +18,19 @@
         <%= f.radio_button :address, :registered_address, class: "form-control" %>
         <%= f.label :address_registered_address, "登録済みの住所から選択", class: "control-label" %>
         <br>
-        <%= f.select :registered_address, current_customer.deliveries.all.map { |delivery| "#{ delivery.postcode } #{ delivery.address } #{ delivery.name }" }, {}, { class: "form-control" } %>
+        <%= f.select :registered_addresses, current_customer.deliveries.all.map { |delivery| "#{ delivery.postcode } #{ delivery.address } #{ delivery.name }" }, {}, { class: "form-control",  disabled: true } %>
         <br>
         <%= f.radio_button :address, :new_address, class: "form-control" %>
         <%= f.label :address_new_address, "新しい届け先", class: "control-label" %>
         <br>
         <%= f.label :new_address_postcode, "郵便番号(ハイフンなし)", class: "control-label"%>
-        <%= f.text_field :new_address_postcode, class: "form-control" %>
+        <%= f.text_field :new_address_postcode, class: "form-control", disabled: true %>
         <br>
         <%= f.label :new_address_address, "住所", class: "control-label" %>
-        <%= f.text_field :new_address_address, class: "form-control" %>
+        <%= f.text_field :new_address_address, class: "form-control", disabled: true %>
         <br>
         <%= f.label :new_address_name, "宛名", class: "control-label" %>
-        <%= f.text_field :new_address_name, class: "form-control" %>
+        <%= f.text_field :new_address_name, class: "form-control", disabled: true %>
       </section>
       <div class="submit-btn">
         <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>

@@ -20,12 +20,12 @@ RSpec.describe "items-page", type: :system do
     it "has category_list" do
       # check with each
       Category.all.each do |c|
-#        expect(page).to have_link c.name, href:
+        expect(page).to have_link c.name, href: categorized_items(c)
       end
-#      expect(page).to have_link "ケーキ", href: 
-#      expect(page).to have_link "焼き菓子", href:
-#      expect(page).to have_link "プリン", href: 
-#      expect(page).to have_link "キャンディ", href:
+      expect(page).to have_link "ケーキ", href: categorized_items_path(category1)
+     expect(page).to have_link "焼き菓子", href: categorized_items_path(category2)
+      expect(page).to have_link "プリン", href: categorized_items_path(category3)
+      expect(page).to have_link "キャンディ", href: categorized_items_path(category4)
     end
     it "has item_count" do
       # check with actual number

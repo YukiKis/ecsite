@@ -5,7 +5,11 @@ Rails.application.routes.draw do
       post "/leave", to: "customers#leave", as: :leave
     end
     resources :deliveries, except: [:show, :new]
-    resources :items, only: [:index, :show]
+    resources :items, only: [:index, :show] do
+      collection do
+        get "/categorized/:category_id", to: "items#categorized", as: :categorized
+      end
+    end
     resources :cart_items, only: [:index, :create, :update, :destroy] do
       collection do
         delete "/destroy_all", to: "cart_items#destroy_all", as: :destroy_all

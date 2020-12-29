@@ -22,30 +22,15 @@
     </div>
     <section class="recommendation">
       <h2>おすすめ商品</h2>
-      <%# @items.each do |i| %>
       <div class="items-list">
-        <div clsas="item">
-          IMG<br>
-          商品名<br>
-          値段
-        </div>
-        <div clsas="item">
-          IMG<br>
-          商品名<br>
-          値段
-        </div>
-        <div clsas="item">
-          IMG<br>
-          商品名<br>
-          値段
-        </div>
-        <div clsas="item">
-          IMG<br>
-          商品名<br>
-          値段
-        </div>        
+        <% @items.each do |item| %>
+          <div class="item">
+            IMG<br>
+            <%= link_to item.name, item_path(item) %><br>
+            <%= item.price_with_tax.to_s(:delimited) %>
+          </div>
+        <% end %>
       </div>
-      <%#end %>
     </section>
   </div>
 </div>

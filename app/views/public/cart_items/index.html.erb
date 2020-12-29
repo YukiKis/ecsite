@@ -18,8 +18,10 @@
               <td><%= cart_item.item.price_with_tax.to_s(:delimited) %></td>
               <td>
                 <%= form_with model: cart_item, local: true do |f| %>
-                  <%= f.number_field :amount, class: "form-control", id: "cart_item_amount_#{ cart_item.id }" %>
-                  <%= f.submit "変更", class: "btn btn-primary" %>
+                  <div class="form-group form-inline">
+                    <%= f.number_field :amount, class: "form-control", style: "width: 50px;", id: "cart_item_amount_#{ cart_item.id }" %>
+                    <%= f.submit "変更", class: "btn btn-primary" %>
+                  </div>
                 <% end %>
               </td>
               <td><%= cart_item.subtotal.to_s(:delimited) %></td>
@@ -29,12 +31,12 @@
         </tbody>
       </table>
       <div class="clearfix">
-        <%= link_to "買い物を続ける", items_path, class: "pull-left" %>
+        <%= link_to "買い物を続ける", items_path, class: "pull-left btn btn-primary" %>
         <table class="table-bordered pull-right">
           <th>合計金額</th><td><%= current_customer.subtotal_with_all_cart_items.to_s(:delimited) %></td>
         </table>
       </div>
-      <div class="next-btn">
+      <div class="next-btn text-center">
         <%= link_to "情報入力に進む", new_order_path, class: "btn btn-success" %>
       </div>
     </section>

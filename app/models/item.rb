@@ -11,6 +11,8 @@ class Item < ApplicationRecord
   validates :price, numericality: true
   
   scope :active, ->(){ where(is_active: true) }
+  scope :categorized, ->(category_id){ active.where(category_id: category_id).order(created_at: "ASC") }
+  
   
   TAX = 1.1
   

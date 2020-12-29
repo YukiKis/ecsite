@@ -22,9 +22,17 @@ Rails.application.routes.draw do
       end
     end
   end
+  namespace :admins do
+    get "/", to: "home#top", as: :top
+    resources :items
+  end
   devise_for :customers, controllers: {
     sessions: "customers/sessions",
     registrations: "customers/registrations"
+  }
+  devise_for :admins, controllers: {
+    sessions: "admins/sessions",
+    registrations: "admins/registrations"
   }
   root "homes#home"
   get 'homes/about', as: :about

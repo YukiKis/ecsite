@@ -19,8 +19,10 @@
 
 $(document).on("turbolinks:load", function(){
   $(window).on("resize", function(){
-    $(".container").height($(window).height());
-  })
+    if($(".container").height() <= $(window).height()){
+      $(".container").height($(window).height());
+    };
+  });
   $(window).trigger("resize")
   
   $("input[name='info[address]']").on("change", function(){

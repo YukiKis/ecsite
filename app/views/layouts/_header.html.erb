@@ -4,6 +4,11 @@
       <div>
         <p><%= link_to "LOGO", root_path %></p>
       </div>
+      <% if customer_signed_in? %>
+        <div class="welcome-msg">
+          <p>ようこそ、<%= current_customer.last_name %> <%= current_customer.first_name %>様！</p>
+        </div>
+      <% end %>
       <div>
         <ul class="nav-menu">
           <% if customer_signed_in? %>
@@ -14,7 +19,7 @@
           <%# elsif admin.signed_in? %>
           <% else %>
             <li class="nav-menu-item"><%= link_to "About", about_path %></li>
-            <li class="nav-menu-item">商品一覧</li>
+            <li class="nav-menu-item"><%= link_to "商品一覧", items_path %></li>
             <li class="nav-menu-item"><%= link_to "新規登録", new_customer_registration_path %></li>
             <li class="nav-menu-item"><%= link_to "ログイン", new_customer_session_path %></li>
           <% end %>

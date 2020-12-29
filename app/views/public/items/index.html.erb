@@ -4,7 +4,7 @@
       <tr><th class="text-center">ジャンル検索</th></tr>
       <% Category.active.all.each do |category| %>
         <tr>
-          <td><%= category.name %></td>
+          <td><%= link_to category.name, categorized_items_path(category) %></td>
         </tr>
       <% end %>
     </table>

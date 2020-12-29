@@ -7,4 +7,9 @@ class Public::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @cart_item_new = CartItem.new()
   end
+  
+  def categorized
+    @items = Item.categorized(params[:category_id])
+    render :index
+  end
 end

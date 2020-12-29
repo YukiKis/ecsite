@@ -4,13 +4,23 @@
   </div>
   <div class="col-sm-12">
     <div class="flex-box">
+      <div class="category-list">
+        <table style="border: 1px solid black;">
+          <th style="border: 1px solid black;">ジャンル検索</th>
+          <% Category.active.all.each do |category| %>
+            <tr>
+              <td><%= link_to category.name, categorized_items_path(category) %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
       <div class="item-image">
         IMG
       </div>
       <section class="item-text">
         <h2><%= @item.name %></h2>
         <p><%= @item.description %></p>
-        <h4><%= @item.price_with_tax %>(税込)</h4>
+        <h4>$<%= @item.price_with_tax.to_s(:delimited) %>(税込)</h4>
         <div class="item-menu flex-box" style="justify-content: flex-end">
           <%= form_with model: @cart_item_new, url: cart_items_path, local: true do |f| %>
             <%= f.select :amount, [1, 2, 3, 4, 5], { include_blank: "個数選択" }, { class: "form-control" } %>

@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :category
   has_many :cart_items, dependent: :destroy
+  has_many :order_items, dependent: :destroy
   
   attachment :image
   
@@ -10,6 +11,8 @@ class Item < ApplicationRecord
   validates :price, numericality: true
   
   scope :active, ->(){ where(is_active: true) }
+  scope :categorized, ->(category_id){ active.where(category_id: category_id).order(created_at: "ASC") }
+  
   
   TAX = 1.1
   

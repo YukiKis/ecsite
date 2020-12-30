@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "admins-category-page" do
+RSpec.describe "admins-category-page", type: :system do
   let(:admin){ create(:admin) }
   let(:category1){ create(:category1) }
   let(:category2){ create(:category2) }

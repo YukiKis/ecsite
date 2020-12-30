@@ -130,7 +130,7 @@ RSpec.describe "admin-items page", type: :system do
       expect(page).to have_content "れいれい"
       expect(page).to have_content "800"
     end
-    ot "fails to update" do
+    it "fails to update" do
       fill_in "item[name]", with: ""
       click_button "変更を保存する"
       expect(page).to have_content "エラー"

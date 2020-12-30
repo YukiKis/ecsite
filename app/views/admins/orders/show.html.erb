@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col-sm-10 col-sm-offset-1">
+    <h2>注文履歴詳細</h2>
+    <div class="row">
+      <div class="col-sm-4">購入者</div>
+      <div class="col-sm-8"><%= link_to "#{ @order.customer.last_name } #{ @order.customer.first_name }", admins_customer_path(@order.customer) %></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">配送先</div>
+      <div class="col-sm-8"><%= @order.postcode %> <%= @order.address %><br><%= @order.name %></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">支払方法</div>
+      <div class="col-sm-8"><%= @order.payment %></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">注文ステータス</div>
+      <div class="col-sm-8">
+        <%= form_with model: @order, url: admins_order_path(@order), class: "form-inline", local: true do |f| %>
+          <%= f.select :status, { "入金待ち": 0, "作成中": 1, "発送済み": 2 }, {}, { class: "form-control form-inline" } %>
+          <%= f.submit "更新", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+    
+    <div class="row relative">
+      <div class="col-sm-9">
+        <table class="table table-hover">
+          <thead class="row">
+            <th class="col-sm-3">商品名</th>
+            <th class="col-sm-2">単価(税込)</th>
+            <th class="col-sm-1">数量</th>
+            <th class="col-sm-2">小計</th>
+            <th class="col-sm-3">製作ステータス</th>
+            <th class="col-sm-1"></th>
+          </thead>
+          <tbody>
+            <% @order.order_items.each do |order_item| %>
+              <tr>
+                <td><%= order_item.item.name %></td>
+                <td><%= order_item.item.price_with_tax.to_s(:delimited) %></td>
+                <td><%= order_item.amount %></td>
+                <td><%= order_item.subtotal %></td>
+                <td>
+                  <%= form_with model: order_item, url: order_items_admins_order_path(@order, order_item), local: true do |f| %>
+                    <%= f.select :status, { "着手不可": 0, "作成中": 1, "作成済み": 2 }, {}, { class: "form-control" } %>
+                    <%= f.submit "更新", class: "btn primary-btn" %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-sm-3" style="position: relative; bottom: 0;">
+        <div class="price-list">
+          <p class="clearfix"><b>商品合計</b>&emsp;<span class="pull-right"><%= @order.subtotal_price %></span></p>
+          <p class="clearfix"><b>送料</b>&emsp;<span class="pull-right"><%= @order.shipment %></span></p>
+          <p class="clearfix"><b>請求金額合計</b><span class="pull-right"><%= @order.total_price %></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

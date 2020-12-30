@@ -3,7 +3,7 @@ class Order < ApplicationRecord
   belongs_to :customer
   
   enum payment: { "クレジットカード": 0, "銀行振込": 1 }
-  
+  enum status: { "入金待ち": 0, "作成中": 1, "発送済み": 2 }
   validates :payment, presence: true
   validates :postcode, presence: true
   validates :address, presence: true

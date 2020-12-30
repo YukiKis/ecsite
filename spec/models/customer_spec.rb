@@ -55,4 +55,14 @@ RSpec.describe Customer, type: :model do
       expect(customer.subtotal_with_all_cart_items).to eq 3520
     end
   end
+  context "on method" do
+    let(:customer){ create(:customer) }
+    it "return status active" do
+      expect(customer.status).to eq "有効会員"
+    end
+    it "return status inactive" do
+      customer.is_active = false
+      expect(customer.status).to eq "退会会員"
+    end
+  end
 end

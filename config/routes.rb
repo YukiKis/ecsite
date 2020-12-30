@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admins do
-    get 'categories/index'
-    get 'categories/edit'
-  end
   scope module: :public do
     resource :customer, except: [:destroy, :create, :new] do
       get "/quit", to: "customers#quit", as: :quit
@@ -30,6 +26,12 @@ Rails.application.routes.draw do
     get "/", to: "home#top", as: :top
     resources :items
     resources :categories, only: [:index, :edit, :update, :create]
+    resources :customers, except: [:destroy]
+    resources :orders, except: [:new, :create, :destroy] do
+      member do
+        patch "/order_items/:order_item_id", to: "order_items#update", as: :order_items
+      end
+    end
   end
   devise_for :customers, controllers: {
     sessions: "customers/sessions",

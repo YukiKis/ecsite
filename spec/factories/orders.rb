@@ -5,5 +5,6 @@ FactoryBot.define do
     address { "滋賀県" }
     name { "母" }
     shipment { 800 }
+    status { 0 }
   end
 end

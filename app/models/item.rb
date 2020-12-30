@@ -19,4 +19,12 @@ class Item < ApplicationRecord
   def price_with_tax
     (self.price * TAX).to_i
   end
+  
+  def status
+    if self.is_active == true
+      "販売中"
+    else
+      "販売中止"
+    end
+  end
 end

@@ -13,7 +13,6 @@ class Admins::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     if @order.update(order_params)
-      debugger
       redirect_to admins_order_path(@order)
     end
   end

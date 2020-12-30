@@ -17,7 +17,7 @@
       <div class="col-sm-4">注文ステータス</div>
       <div class="col-sm-8">
         <%= form_with model: @order, url: admins_order_path(@order), class: "form-inline", local: true do |f| %>
-          <%= f.select :status, { "入金待ち": 0, "作成中": 1, "発送済み": 2 }, {}, { class: "form-control form-inline" } %>
+          <%= f.select :status, ["入金待ち", "作成中", "発送済み"], { selected: @order.status }, { class: "form-control form-inline" } %>
           <%= f.submit "更新", class: "btn btn-primary" %>
         <% end %>
       </div>
@@ -42,8 +42,8 @@
                 <td><%= order_item.amount %></td>
                 <td><%= order_item.subtotal %></td>
                 <td>
-                  <%= form_with model: order_item, url: order_items_admins_order_path(@order, order_item), local: true do |f| %>
-                    <%= f.select :status, { "着手不可": 0, "作成中": 1, "作成済み": 2 }, {}, { class: "form-control" } %>
+                  <%= form_with model: [@order, order_item], url: order_items_admins_order_path(@order, order_item), local: true do |f| %>
+                    <%= f.select :status, ["着手不可", "作成中", "作成済み"], { selected: order_item.status }, { class: "form-control" } %>
                     <%= f.submit "更新", class: "btn primary-btn" %>
                   <% end %>
                 </td>

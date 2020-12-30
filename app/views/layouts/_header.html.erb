@@ -20,7 +20,7 @@
             <li class="nav-menu-item"><%= link_to "商品一覧", admins_items_path %></li>
             <li class="nav-menu-item">会員一覧</li>
             <li class="nav-menu-item">注文履歴一覧</li>
-            <li class="nav-menu-item">ジャンル一覧</li>
+            <li class="nav-menu-item"><%= link_to "ジャンル一覧", admins_categories_path %></li>
             <li class="nav-menu-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
           <% else %>
             <li class="nav-menu-item"><%= link_to "About", about_path %></li>

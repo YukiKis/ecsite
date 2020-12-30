@@ -21,4 +21,12 @@ class Customer < ApplicationRecord
       total += cart_item.item.price_with_tax * cart_item.amount
     end
   end
+  
+  def status
+    if self.is_active
+      "有効会員"
+    else
+      "退会"
+    end
+  end
 end

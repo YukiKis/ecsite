@@ -14,4 +14,13 @@ RSpec.describe Category, type: :model do
       expect(category1).to be_invalid
     end
   end
+  context "on method" do
+    it "return status active" do
+      expect(category1.status).to eq "有効"
+    end
+    it "return status inactive" do
+      category1.is_active = false
+      expect(category1.status).to eq "無効"
+    end
+  end
 end

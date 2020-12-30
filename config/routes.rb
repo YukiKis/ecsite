@@ -22,9 +22,24 @@ Rails.application.routes.draw do
       end
     end
   end
+  namespace :admins do
+    get "/", to: "home#top", as: :top
+    resources :items
+    resources :categories, only: [:index, :edit, :update, :create]
+    resources :customers, except: [:destroy]
+    resources :orders, except: [:new, :create, :destroy] do
+      member do
+        patch "/order_items/:order_item_id", to: "order_items#update", as: :order_items
+      end
+    end
+  end
   devise_for :customers, controllers: {
     sessions: "customers/sessions",
     registrations: "customers/registrations"
+  }
+  devise_for :admins, controllers: {
+    sessions: "admins/sessions",
+    registrations: "admins/registrations"
   }
   root "homes#home"
   get 'homes/about', as: :about
